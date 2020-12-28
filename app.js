@@ -8,6 +8,26 @@ var usersRouter = require('./routes/users');
 
 app.use(express.json());
 
+const {sequelize , testConnection } = require('./database');
+
+// testConnection();
+
+const { User , syncTables } = require('./models');
+
+// syncTables();
+
+const createUser = async () => {
+  try {
+    let newUser = await User.create({ username : 'sajjad' , phone_number : '09381308994' });
+    // newUser.save();
+    // console.log(newUser);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+createUser();
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
