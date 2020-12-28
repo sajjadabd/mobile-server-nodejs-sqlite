@@ -3,8 +3,8 @@ const { Sequelize } = require('sequelize');
 // Passing parameters separately (sqlite)
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: 'db/database.sqlite',
-  logging: (...msg) => console.log(msg),
+  storage: 'database.sqlite',
+  // logging: (...msg) => console.log(msg),
 });
 
 const testConnection = async () => {

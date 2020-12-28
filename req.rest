@@ -1,0 +1,40 @@
+POST https://RestfulSms.com/api/Token
+Content-Type: application/json
+
+{
+  "UserApiKey":"b6f1bd78abad2392c7ddc177",
+	"SecretKey":"sms.ir!@#security%^code"
+}
+
+
+###
+
+POST https://RestfulSms.com/api/VerificationCode
+Content-Type: application/json
+x-sms-ir-secure-token: RmRROTNwVFh0YklwUjFabzEvNTRTM0ZZdjNNT3RmZmNDVTVFb21hUXA0L2RQdHlKQkI2ZTdJc1dlUDM5TnIyS01pR3B4RW91SG9kRnF0QytwNzNoZkkwdm9peU5uRVN2dnlGd3pqa2xPVmtrNHl1aDRTVTVGZU1FNE1UUkpneGd5VVFBRVhYQXg4VURwd01nNDR0YW9mYVNLOG5pNFlTVmtHZldEdzN0WnJKN1NNZEhxSlFMVzJjV2ZKU2RPVEFK
+
+{
+  "Code": "456345",
+  "MobileNumber": "09381308994"
+}
+
+
+###
+
+
+POST https://RestfulSms.com/api/UltraFastSend
+Content-Type: application/json
+x-sms-ir-secure-token : RmRROTNwVFh0YklwUjFabzEvNTRTM0ZZdjNNT3RmZmNDVTVFb21hUXA0L2RQdHlKQkI2ZTdJc1dlUDM5TnIyS01pR3B4RW91SG9kRnF0QytwNzNoZkkwdm9peU5uRVN2dnlGd3pqa2xPVmtrNHl1aDRTVTVGZU1FNE1UUkpneGdpUVM5enptT2J4RC85VGIxa0ZXOXBwV0N5UXZ1WEgrclNMbnVZc0srWks5SWo0K3Z4MXprU2lyb1dLZVZrNDNu
+
+{
+   "ParameterArray":[
+      { 
+      "Parameter": "VerificationCode",
+      "ParameterValue": "235463"
+      }
+    ],
+    "Mobile":"09381308994",
+    "TemplateId":"13671"
+}
+
+

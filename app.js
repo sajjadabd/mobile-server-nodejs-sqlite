@@ -8,25 +8,17 @@ var usersRouter = require('./routes/users');
 
 app.use(express.json());
 
-const {sequelize , testConnection } = require('./database');
+const { sequelize , testConnection } = require('./database');
 
-// testConnection();
+const { pushSomeFakeInfo } = require('./models/models');
 
-const { User , syncTables } = require('./models');
-
-// syncTables();
-
-const createUser = async () => {
-  try {
-    let newUser = await User.create({ username : 'sajjad' , phone_number : '09381308994' });
-    // newUser.save();
-    // console.log(newUser);
-  } catch (e) {
-    console.log(e);
-  }
+let createDatabase = async () => {
+  await testConnection();
+  await pushSomeFakeInfo();
 }
 
-createUser();
+createDatabase();
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
