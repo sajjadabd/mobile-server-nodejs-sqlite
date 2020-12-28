@@ -1,0 +1,72 @@
+users
+
+   user_id | username | phone_number | sms | province | city | gender | verified | blue_tick | image_url
+------------------------------------------------------------------------------------------------------------
+
+###
+
+skills
+
+   skill_id | skill_title
+---------------------------------------------
+
+###
+
+user_skills
+
+ user_skills_id | skill_id | user_id 
+------------------------------------------------------
+
+###
+
+quesions
+
+   question_id | chapter | subchapter_title | season_title | level | question_text | first | second |  third | fourth   
+---------------------------------------------------------------------------------------------------------
+
+###
+
+chapters
+
+   chapter_id | chapter_name | number_of_subchapters
+---------------------------------------------------------
+
+
+###
+
+subchapters
+
+   subchapter_id | subchapter_name | number_of_seasons 
+-------------------------------------------------------------
+
+###
+
+seasons
+
+   season_id | subchapter_id | season_title 
+-------------------------------------------------
+
+###
+
+
+saved_questions 
+
+   save_question_id |  question_id | users_id 
+------------------------------------------------
+
+###
+
+
+saved_subchapters
+
+   saved_subchapters_id | subchapter_id | user_id 
+----------------------------------------------------
+
+
+###
+
+
+Works
+
+    user_id | work_id | province | city | gender | work_title | skills(array of skill_id)  
+-------------------------------------------------------------------
