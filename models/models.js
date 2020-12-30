@@ -5,25 +5,25 @@ const { User , createUser , syncTables , checkUsersTable } = require('./Users');
 const { Chapters , createChapter  } = require('./Chapters');
 const { Questions , createQuestion } = require('./Questions');
 const { SavedQuestions , createSavedQuestion } = require('./SavedQuestions');
-const { SavedSubChapters , createSavedSubChapter } = require('./SavedSubChapters');
+const { SavedStandards , createSavedStandards } = require('./SavedStandards');
 const { Seasons , createSeason } = require('./Seasons');
 const { Skills , createSkill } = require('./Skills');
-const { SubChapters , createSubChapter } = require('./SubChapters');
+const { Standards , createStandard } = require('./Standards');
 const { Works , createWork } = require('./Works');
 
 const pushSomeFakeInfo = async () => {
   // if( checkUsersTable() ) {
   //   await syncTables();
   // } else {
-    await createUser();
-    await createChapter();
-    await createQuestion();
-    await createSavedQuestion();
-    await createSavedSubChapter();
-    await createSeason();
-    await createSkill();
-    await createSubChapter();
-    await createWork();
+  await createUser();
+  await createChapter();
+  await createQuestion();
+  await createSavedQuestion();
+  await createSavedStandards();
+  await createSeason();
+  await createSkill();
+  await createStandard();
+  await createWork();
   // }
 }
 
@@ -32,10 +32,11 @@ module.exports = {
   Chapters , createChapter ,
   Questions , createQuestion ,
   SavedQuestions , createSavedQuestion ,
-  SavedSubChapters , createSavedSubChapter ,
+  SavedStandards , createSavedStandards ,
   Seasons , createSeason ,
   Skills , createSkill ,
-  SubChapters , createSubChapter ,
+  Standards , createStandard ,
   Works , createWork ,
   pushSomeFakeInfo,
 }
+

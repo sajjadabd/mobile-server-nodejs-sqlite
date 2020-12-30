@@ -65,18 +65,18 @@ const syncTables = async () => {
 };
 
 
-const createUser = async () => {
+const createUser = async (data) => {
   try {
-    let newUser = await User.create({ 
-      username : 'sajjad' , 
-      phone_number : '09381308994',
-      sms : '987657',
-      province : 'مازندران',
-      city : 'نکا',
-      gender : 'male',
-      verified : true,
-      blue_tick : true,
-      image_url : 'url',
+    let result = await User.create({ 
+      username : data.username , 
+      phone_number : data.phone_number,
+      sms : data.sms,
+      province : data.province,
+      city : data.city,
+      gender : data.gender,
+      verified : data.verified,
+      blue_tick : data.blue_tick,
+      image_url : data.image_url,
     });
     // newUser.save();
     // console.log(newUser);
@@ -84,6 +84,35 @@ const createUser = async () => {
     console.log(e);
   }
 }
+
+
+const updateOne = async (id , data) => {
+  try {
+    let result = await User.update(
+      data , {
+      where: {
+        id
+      }
+    });
+  } catch (e) {
+    
+  }
+}
+
+
+
+const findOne = async (id) => {
+  try {
+    let result = await User.findOne({ 
+      where: { 
+        id 
+      } 
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 
 
 

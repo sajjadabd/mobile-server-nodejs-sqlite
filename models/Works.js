@@ -25,15 +25,15 @@ const Works = sequelize.define("works", {
   }
 );
 
-const createWork = async () => {
+const createWork = async (data) => {
   try {
-    let newUser = await Works.create({ 
-      user_id : '1' , 
-      province : 'مازندران',
-      city : 'نکا',
-      gender : 'male',
-      work_title : 'جوشکاری',
-      skills : [1,2,3]
+    let result = await Works.create({ 
+      user_id : data.user_id , 
+      province : data.province,
+      city : data.city,
+      gender : data.gender,
+      work_title : data.work_title,
+      skills : data.skills
     });
     // newUser.save();
     // console.log(newUser);
@@ -41,6 +41,38 @@ const createWork = async () => {
     console.log(e);
   }
 }
+
+
+const updateOne = async (id , data) => {
+  try {
+    let result = await Works.update(
+      data , {
+      where: {
+        id
+      }
+    });
+  } catch (e) {
+    
+  }
+}
+
+
+const findOne = async (id) => {
+  try {
+    let result = await Works.findOne({ 
+      where: { 
+        id 
+      } 
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
+
+
+
 
 
 module.exports = {

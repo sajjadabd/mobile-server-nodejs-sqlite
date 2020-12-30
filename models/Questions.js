@@ -35,18 +35,18 @@ const Questions = sequelize.define("questions", {
 );
 
 
-const createQuestion = async () => {
+const createQuestion = async (data) => {
   try {
-    let newUser = await Questions.create({ 
-      chapter : 'فناوری اطلاعات',
-      subchapter : 'ّبرنامه نویسی',
-      season : 1,
-      level : 2,
-      question : 'متن سوال',
-      first : 'گزینه ی 1',
-      second : 'گزینه ی 2',
-      third : 'گزینه ی 3',
-      fourth : 'گزینه ی 4'
+    let result = await Questions.create({ 
+      chapter : data.chapter,
+      subchapter : data.subchapter,
+      season : data.season,
+      level : data.level,
+      question : data.question,
+      first : data.first,
+      second : data.second,
+      third : data.third,
+      fourth : data.fourth
     });
     // newUser.save();
     // console.log(newUser);
@@ -54,6 +54,35 @@ const createQuestion = async () => {
     console.log(e);
   }
 }
+
+const updateOne = async (id , data) => {
+  try {
+    let result = await Questions.update(
+      data , {
+      where: {
+        id
+      }
+    });
+  } catch (e) {
+    
+  }
+}
+
+
+
+const findOne = async (id) => {
+  try {
+    let result = await Questions.findOne({ 
+      where: { 
+        id 
+      } 
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
 
 
 module.exports = {

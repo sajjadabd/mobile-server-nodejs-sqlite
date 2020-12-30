@@ -3,9 +3,12 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT | 3000
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+let usersRouter = require('./routes/users');
+let homeRouter = require('./routes/home');
+let savedRouter = require('./routes/saved');
+let worksRouter = require('./routes/works');
 
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 const { sequelize , testConnection } = require('./database');
@@ -14,14 +17,17 @@ const { pushSomeFakeInfo } = require('./models/models');
 
 let createDatabase = async () => {
   await testConnection();
-  await pushSomeFakeInfo();
+  // await pushSomeFakeInfo();
 }
 
 createDatabase();
 
 
-app.use('/', indexRouter);
+app.use('/', homeRouter);
 app.use('/users', usersRouter);
+app.use('/saved', savedRouter);
+app.use('/works', worksRouter);
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

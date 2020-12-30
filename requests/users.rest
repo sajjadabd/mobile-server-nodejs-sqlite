@@ -1,0 +1,46 @@
+POST http://localhost:3000/users/check
+Content-Type: application/json
+
+{
+  "phone_number" : "09381308994" ,
+  "sms" : "345876"
+}
+
+###
+
+POST http:localhost:3000/users/create
+Content-Type: application/json
+
+{
+  "username" : "sajjad", 
+  "phone_number" : "09381308994",
+  "sms" : "568954",
+  "province" : "مازندران",
+  "city" : "نکا",
+  "gender" : "male",
+  "verified" : true,
+  "blue_tick" : true,
+  "image_url" : "url"
+}
+
+
+###
+
+POST http:localhost:3000/users/update
+Content-Type: application/json
+
+{
+  "province" : "مازندران",
+  "city" : "نکا",
+}
+
+
+###
+
+POST http:localhost:3000/users/update
+Content-Type: application/json
+
+{
+  "province" : "تهران",
+  "city" : "دماوند",
+}

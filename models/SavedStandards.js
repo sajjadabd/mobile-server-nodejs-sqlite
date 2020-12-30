@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
-const SavedQuestions = sequelize.define("savedquestions", {
-    question_id : {
+const SavedStandards = sequelize.define("savedstandards", {
+    standard_id : {
       type: DataTypes.INTEGER
     },
     user_id : {
@@ -15,10 +15,10 @@ const SavedQuestions = sequelize.define("savedquestions", {
 
 
 
-const createSavedQuestion = async (data) => {
+const createSavedStandards = async (data) => {
   try {
-    let result = await SavedQuestions.create({ 
-      question_id : data.question_id,
+    let result = await SavedSubChapters.create({ 
+      standard_id : data.standard_id,
       user_id : data.user_id,
     });
     // newUser.save();
@@ -28,9 +28,11 @@ const createSavedQuestion = async (data) => {
   }
 }
 
-const deleteSavedQuestion = async (id) => {
+
+
+const deleteSavedStandards = async (id) => {
   try {
-    await SavedQuestions.destroy({
+    await SavedSubChapters.destroy({
       where: {
         id
       }
@@ -41,9 +43,8 @@ const deleteSavedQuestion = async (id) => {
 }
 
 
-
-
 module.exports = {
-  SavedQuestions , 
-  createSavedQuestion
+  SavedStandards , 
+  createSavedStandards ,
+  deleteSavedStandards
 }

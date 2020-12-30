@@ -1,0 +1,42 @@
+###
+
+GET http://localhost:3000/
+Content-Type: application/json
+
+
+###
+
+
+GET http://localhost:3000/standards
+Content-Type: application/json
+
+
+###
+
+
+GET http://localhost:3000/standards/20
+Content-Type: application/json
+
+
+###
+
+GET http://localhost:3000/standards/20/seasons
+Content-Type: application/json
+
+
+###
+
+
+GET http://localhost:3000/standards/20/seasons/questions
+Content-Type: application/json
+
+
+###
+
+
+GET http://localhost:3000/standards/20/seasons/20/questions
+Content-Type: application/json
+
+
+###
+

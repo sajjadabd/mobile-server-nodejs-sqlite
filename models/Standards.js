@@ -1,11 +1,11 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
-const Chapters = sequelize.define("chapters", {
-    chapter_name: {
+const Standards = sequelize.define("standards", {
+    standard_name: {
       type: DataTypes.STRING
     },
-    number_of_standards: {
+    number_of_seasons: {
       type: DataTypes.INTEGER
     },
   }, {
@@ -13,11 +13,11 @@ const Chapters = sequelize.define("chapters", {
   }
 );
 
-const createChapter = async (data) => {
+const createStandard = async (data) => {
   try {
-    let result = await Chapters.create({ 
-      chapter_name : data.chapter_name,
-      number_of_standards : data.number_of_standards,
+    let result = await Standards.create({ 
+      standard_name : data.standard_name,
+      number_of_seasons : data.number_of_seasons,
     });
     // newUser.save();
     // console.log(newUser);
@@ -26,10 +26,9 @@ const createChapter = async (data) => {
   }
 }
 
-
 const updateOne = async (id , data) => {
   try {
-    let result = await Chapters.update(
+    let result = await Standards.update(
       data , {
       where: {
         id
@@ -43,7 +42,7 @@ const updateOne = async (id , data) => {
 
 const findOne = async (id) => {
   try {
-    let result = await Chapters.findOne({ 
+    let result = await Standards.findOne({ 
       where: { 
         id 
       } 
@@ -54,8 +53,9 @@ const findOne = async (id) => {
 }
 
 
-
 module.exports = {
-  Chapters , 
-  createChapter
+  Standards , 
+  createStandard
 }
+
+

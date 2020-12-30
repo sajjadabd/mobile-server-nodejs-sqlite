@@ -1,0 +1,54 @@
+------HomePage------------
+
+/standards
+
+/standards/{id}
+
+/standards/{id}/seasons/questions
+
+/standards/{id}/seasons/{id}
+
+{
+  phone_number ,
+  sms
+}
+
+-----Profile----------
+
+/users/{phone_number}
+
+{
+  phone_number ,
+  sms
+}
+
+
+-----Saved---------
+
+/saved/questions
+
+{
+  phone_number,
+  sms
+}
+
+/saved/standards
+
+{
+  phone_number ,
+  sms
+}
+
+
+----------Work---------------
+
+/works
+
+{
+  phone_number ,
+  sms,
+  province,
+  city,
+  skills,
+  gender,
+}

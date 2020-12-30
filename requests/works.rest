@@ -1,0 +1,21 @@
+GET http://localhost/works
+Content-Type: application/json
+
+###
+
+POST http://localhost/works/create
+Content-Type: application/json
+
+{
+  "user_id" : "10" , 
+  "province" : "مازندران",
+  "city" : "نکا" ,
+  "gender" : "male" ,
+  "work_title" : "جوشکار" ,
+  "skills" : [ "جوشکاری" ]
+}
+
+###
+
+GET http://localhost/works/10
+Content-Type: application/json
