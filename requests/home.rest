@@ -5,34 +5,35 @@ Content-Type: application/json
 
 
 ###
-
+### get list of standards
 
 GET http://localhost:3000/standards
 Content-Type: application/json
 
 
 ###
-
+### get specific standard
 
 GET http://localhost:3000/standards/20
 Content-Type: application/json
 
 
 ###
+### get seasons of special standard
 
 GET http://localhost:3000/standards/20/seasons
 Content-Type: application/json
 
 
 ###
-
+### get questions of season of special standard
 
 GET http://localhost:3000/standards/20/seasons/questions
 Content-Type: application/json
 
 
 ###
-
+### get questions of special season of special standard
 
 GET http://localhost:3000/standards/20/seasons/20/questions
 Content-Type: application/json

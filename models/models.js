@@ -1,7 +1,7 @@
 // const { Sequelize, DataTypes, Model } = require('sequelize');
 const { sequelize } = require('../database');
 
-const { User , createUser , syncTables , checkUsersTable } = require('./Users');
+const { User , createUser } = require('./Users');
 const { Chapters , createChapter  } = require('./Chapters');
 const { Questions , createQuestion } = require('./Questions');
 const { SavedQuestions , createSavedQuestion } = require('./SavedQuestions');
@@ -12,9 +12,6 @@ const { Standards , createStandard } = require('./Standards');
 const { Works , createWork } = require('./Works');
 
 const pushSomeFakeInfo = async () => {
-  // if( checkUsersTable() ) {
-  //   await syncTables();
-  // } else {
   await createUser();
   await createChapter();
   await createQuestion();
@@ -24,7 +21,6 @@ const pushSomeFakeInfo = async () => {
   await createSkill();
   await createStandard();
   await createWork();
-  // }
 }
 
 module.exports = {

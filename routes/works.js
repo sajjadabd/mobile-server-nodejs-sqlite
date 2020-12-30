@@ -1,18 +1,35 @@
 var express = require('express');
 var router = express.Router();
 
+const { Works , createWork } = require('../models/Works');
+
+
 /* GET home page. */
-router.get('/', (req, res) => {
-  res.json({ path : req.originalUrl } );
+router.get('/', async (req, res) => {
+  res.json({ 
+    path : req.originalUrl 
+  });
 });
 
 
-
-router.get('/create', (req, res) => {
-  console.log(req.body);
+router.get('/deleteAll', async (req, res) => {
+  // console.log(req.body);
+  let result = await Works.destroy({
+    truncate: true
+  });
   res.json({ 
     path : req.originalUrl,
-    ...req.body 
+    ...result
+  });
+});
+
+
+router.post('/create', async (req, res) => {
+  console.log(req.body);
+  let result = await createWork(req.body);
+  res.json({ 
+    path : req.originalUrl,
+    result : result
   });
 });
   

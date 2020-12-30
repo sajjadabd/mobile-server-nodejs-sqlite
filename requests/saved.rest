@@ -12,11 +12,13 @@ Content-Type: application/json
 }
 
 ###
+### get saved standards for special user
 
 GET http://localhost:3000/saved/standards
 Content-Type: application/json
 
 ###
+### create new saved standard for special user
 
 POST http://localhost:3000/saved/standards
 Content-Type: application/json

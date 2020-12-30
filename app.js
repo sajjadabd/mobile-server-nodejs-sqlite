@@ -4,7 +4,7 @@ const app = express()
 const port = process.env.PORT | 3000
 
 let usersRouter = require('./routes/users');
-let homeRouter = require('./routes/home');
+let homeRouter  = require('./routes/home');
 let savedRouter = require('./routes/saved');
 let worksRouter = require('./routes/works');
 
@@ -13,17 +13,14 @@ app.use(express.json());
 
 const { sequelize , testConnection } = require('./database');
 
-const { pushSomeFakeInfo } = require('./models/models');
-
-let createDatabase = async () => {
+let testDatabase = async () => {
   await testConnection();
-  // await pushSomeFakeInfo();
 }
 
-createDatabase();
+testDatabase();
 
 
-app.use('/', homeRouter);
+app.use('/'     , homeRouter);
 app.use('/users', usersRouter);
 app.use('/saved', savedRouter);
 app.use('/works', worksRouter);
@@ -32,6 +29,7 @@ app.use('/works', worksRouter);
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`)

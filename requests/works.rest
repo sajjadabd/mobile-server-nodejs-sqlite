@@ -1,9 +1,14 @@
-GET http://localhost/works
+GET http://localhost:3000/works
 Content-Type: application/json
 
 ###
 
-POST http://localhost/works/create
+GET http://localhost:3000/works/deleteAll
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/works/create
 Content-Type: application/json
 
 {
@@ -17,5 +22,5 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost/works/10
+GET http://localhost:3000/works/10
 Content-Type: application/json

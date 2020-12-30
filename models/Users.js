@@ -78,6 +78,7 @@ const createUser = async (data) => {
       blue_tick : data.blue_tick,
       image_url : data.image_url,
     });
+    return result;
     // newUser.save();
     // console.log(newUser);
   } catch (e) {
@@ -108,6 +109,7 @@ const findOne = async (id) => {
         id 
       } 
     });
+    return result;
   } catch (e) {
     console.log(e);
   }

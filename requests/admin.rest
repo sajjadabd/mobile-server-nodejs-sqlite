@@ -1,0 +1,15 @@
+### in admin you want to 
+
+### create standard
+### update standard
+### delete all standards
+
+### create season
+### update season
+### delete all seasons
+
+### create question
+### update question
+
+### recieve questions for all season
+### recieve questions for all season

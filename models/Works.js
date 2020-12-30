@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
+
 const Works = sequelize.define("works", {
     user_id: {
       type: DataTypes.STRING
@@ -25,6 +26,7 @@ const Works = sequelize.define("works", {
   }
 );
 
+
 const createWork = async (data) => {
   try {
     let result = await Works.create({ 
@@ -43,6 +45,7 @@ const createWork = async (data) => {
 }
 
 
+
 const updateOne = async (id , data) => {
   try {
     let result = await Works.update(
@@ -57,6 +60,7 @@ const updateOne = async (id , data) => {
 }
 
 
+
 const findOne = async (id) => {
   try {
     let result = await Works.findOne({ 
@@ -68,9 +72,6 @@ const findOne = async (id) => {
     console.log(e);
   }
 }
-
-
-
 
 
 
