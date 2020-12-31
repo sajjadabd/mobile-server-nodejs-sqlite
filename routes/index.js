@@ -63,6 +63,7 @@ router.post('/login', async (req, res) => {
   console.log(req.body);
   const { to } = req.body;
   const text = getRandomInteger(100000,999999);
+  console.log(text);
   // const utf8Decoder = new TextDecoder('utf-8');
   // const toUTF = utf8Decoder.decode(to)
   // const textUTF = utf8Decoder.decode(text)
