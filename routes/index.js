@@ -26,9 +26,9 @@ const sendSmsAxios = async (url) => {
         'Content-Type': 'text/xml;charset=utf-8'
       }
     });
-    return "success"
+    //return "success"
   } catch (e) {
-    return "failure"
+    //return "failure"
   }
 }
 
@@ -51,9 +51,9 @@ const sendSmsFetch = async () => {
       // body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
     // return response.json(); // parses JSON response into native JavaScript objects  
-    return "success";
+    //return "success";
   } catch (e) {
-    return "failure";
+    //return "failure";
   }
 }
 
@@ -72,12 +72,11 @@ router.post('/login', async (req, res) => {
     `?username=${sms.username}&password=${sms.password}&to=${to}` + 
     `&text=${text}&from=${sms.from}&api=${sms.api}`
   
-  let result = await sendSmsAxios(url); 
+  await sendSmsAxios(url); 
   // let result = sendSmsFetch(url); 
   console.log(`send sms to : ${to}`);
   res.json({ 
     path : req.originalUrl ,
-    result
   });
 });
 

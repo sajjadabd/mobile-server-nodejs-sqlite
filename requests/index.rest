@@ -16,3 +16,12 @@ Content-Type:  application/json
   "to" : "09381308994",
   "text" : "Hello Sajjad"
 }
+
+###
+
+POST https://fanniherfei.herokuapp.com/login
+Content-Type: text/text/xml
+
+{
+  "to" : "09381308994"
+}
