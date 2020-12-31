@@ -59,10 +59,7 @@ const createUsersTable = async () => {
   await User.sync({ force: true });
 }
 
-const syncTables = async () => {
-  await sequelize.sync({ force: true });
-  // Code here
-};
+
 
 
 const createUser = async (data) => {

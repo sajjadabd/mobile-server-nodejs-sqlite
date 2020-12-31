@@ -12,6 +12,10 @@ const sms = {
   api : '5'
 }
 
+function getRandomInteger(min, max) {
+  return Math.floor( Math.random() * (max - min + 1) ) + min;
+}
+
 
 const sendSmsAxios = async (url) => {
   try {
@@ -27,6 +31,7 @@ const sendSmsAxios = async (url) => {
     return "failure"
   }
 }
+
 
 
 const sendSmsFetch = async () => {
@@ -57,18 +62,18 @@ const sendSmsFetch = async () => {
 router.post('/login', async (req, res) => {
   console.log(req.body);
   const { to } = req.body;
-  const utf8Decoder = new TextDecoder('utf-8');
-
-  const toUTF = utf8Decoder.decode(to)
-  const textUTF = utf8Decoder.decode(text)
+  const text = getRandomInteger(100000,999999);
+  // const utf8Decoder = new TextDecoder('utf-8');
+  // const toUTF = utf8Decoder.decode(to)
+  // const textUTF = utf8Decoder.decode(text)
 
   const url = `http://my.mizbansms.ir/wssms.asmx/sendsms` + 
-    `?username=${sms.username}&password=${sms.password}&to=${toUTF}` + 
-    `&text=${textUTF}&from=${sms.from}&api=${sms.api}`
+    `?username=${sms.username}&password=${sms.password}&to=${to}` + 
+    `&text=${text}&from=${sms.from}&api=${sms.api}`
   
   let result = await sendSmsAxios(url); 
   // let result = sendSmsFetch(url); 
-
+  console.log(`send sms to : ${to}`);
   res.json({ 
     path : req.originalUrl ,
     result

@@ -11,6 +11,11 @@ const { Skills , createSkill } = require('./Skills');
 const { Standards , createStandard } = require('./Standards');
 const { Works , createWork } = require('./Works');
 
+const syncTables = async () => {
+  await sequelize.sync({ force: false });
+  // Code here
+};
+
 const pushSomeFakeInfo = async () => {
   await createUser();
   await createChapter();
@@ -33,6 +38,6 @@ module.exports = {
   Skills , createSkill ,
   Standards , createStandard ,
   Works , createWork ,
-  pushSomeFakeInfo,
+  pushSomeFakeInfo, syncTables
 }
 
