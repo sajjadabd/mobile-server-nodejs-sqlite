@@ -118,6 +118,5 @@ const findOne = async (id) => {
 module.exports = {
   User , 
   createUser,
-  checkUsersTable ,
-  syncTables
+  checkUsersTable 
 }
