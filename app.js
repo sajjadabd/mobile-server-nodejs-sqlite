@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT | 3000
 
+let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 let homeRouter  = require('./routes/home');
 let savedRouter = require('./routes/saved');
@@ -19,8 +20,8 @@ let testDatabase = async () => {
 
 testDatabase();
 
-
-app.use('/'     , homeRouter);
+app.use('/'     , indexRouter);
+app.use('/home' , homeRouter);
 app.use('/users', usersRouter);
 app.use('/saved', savedRouter);
 app.use('/works', worksRouter);
