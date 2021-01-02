@@ -66,25 +66,39 @@ router.post('/signup', async (req, res) => {
   const text = getRandomInteger(100000,999999);
   console.log(text);
 
+  let resultFind;
+
   try {
-    let resultFind = await User.findOne({
-      phone_number 
+    resultFind = await User.findOne({
+      phone_number : to
     })
 
-    console.log(resultFind)
+    console.log(resultFind);
+  } catch (e) {
+    console.log("Error On Finding Users")
+  }
 
-    await User.create({
-      username : null , 
-      phone_number : to,
-      sms : `${text}`,
-      province : null,
-      city : null,
-      gender : "male",
-      verified : false,
-      blue_tick : false,
-      image_url : null,
-    })
+  try {
+    
+    if ( resultFind == undefined ) {
+      await User.create({
+        username : null , 
+        phone_number : to,
+        sms : `${text}`,
+        province : null,
+        city : null,
+        gender : "male",
+        verified : false,
+        blue_tick : false,
+        image_url : null,
+      })
+    }
 
+  } catch (e) {
+    console.log("Error On Creating Users")
+  }
+
+  try {
     const url = `http://my.mizbansms.ir/wssms.asmx/sendsms` + 
     `?username=${sms.username}&password=${sms.password}&to=${to}` + 
     `&text=${text}&from=${sms.from}&api=${sms.api}`
@@ -92,9 +106,8 @@ router.post('/signup', async (req, res) => {
     await sendSmsAxios(url); 
     // let result = sendSmsFetch(url); 
     console.log(`send sms to : ${to}`);
-
   } catch (e) {
-    
+    console.log("Error On Sending Sms")
   }
   
 
