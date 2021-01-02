@@ -9,8 +9,8 @@ const sms = {
   password : 'parsiyan' ,
   // to : '09381308994' ,
   // text : 'Hey There' ,
-  from : '30005800621055' ,
-  api : '5'
+  from : '50002120222220' ,
+  api : '41'
 }
 
 function getRandomInteger(min, max) {
