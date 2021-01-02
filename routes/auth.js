@@ -120,4 +120,57 @@ router.post('/signup', async (req, res) => {
 
 
 
+
+
+
+
+/* GET home page. */
+router.post('/login', async (req, res) => {
+  console.log(req.body);
+  const { phone , sms } = req.body;
+  // const text = getRandomInteger(100000,999999);
+  // console.log(text);
+
+  let resultFind;
+
+  try {
+    resultFind = await User.findOne({
+      where : {
+        phone_number : to,
+        sms : sms
+      }
+    })
+
+    console.log(resultFind);
+  } catch (e) {
+    console.log("Error On Finding Users")
+  }
+
+  try {
+    
+    if ( resultFind == undefined ) {
+      return res.json({
+        successs : false
+      })
+    } else {
+      return res.json({
+        successs : true
+      })
+    }
+
+  } catch (e) {
+    console.log("Error On Creating Users")
+    return res.json({ 
+      success : "false" ,
+    });
+  }
+  
+  
+});
+
+
+
+
+
+
 module.exports = router;
