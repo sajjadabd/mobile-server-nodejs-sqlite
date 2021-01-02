@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Tables</title>
+  <link rel="stylesheet" href="/public/css/styles.css">
+  <link rel="shortcut icon" href="/public/icon/Admin2.svg">
+  <script>
+    let result = '<%- result %>';
+    result = JSON.parse(result);
+    // console.log(result);
+  </script>
+  
+</head>
+<body>
+  <header>
+    
+  </header>
+
+  <main>
+    <div id="buttons"></div>
+    <div id="table"></div>
+  </main>
+
+  <footer>
+    
+  </footer>
+
+  <script src="/public/js/buttons.js"></script>
+  <script>
+    makeTable(result);
+  </script>
+</body>
+</html>

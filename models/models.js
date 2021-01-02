@@ -16,7 +16,7 @@ const syncTables = async () => {
   // Code here
 };
 
-const pushSomeFakeInfo = async () => {
+/* const pushSomeFakeInfo = async () => {
   await createUser();
   await createChapter();
   await createQuestion();
@@ -26,7 +26,7 @@ const pushSomeFakeInfo = async () => {
   await createSkill();
   await createStandard();
   await createWork();
-}
+} */
 
 module.exports = {
   User , createUser ,
@@ -38,6 +38,6 @@ module.exports = {
   Skills , createSkill ,
   Standards , createStandard ,
   Works , createWork ,
-  pushSomeFakeInfo, syncTables
+  syncTables
 }
 

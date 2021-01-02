@@ -17,7 +17,7 @@ router.post('/check', async (req, res) => {
   });
   res.json({ 
     path : req.originalUrl,
-    result 
+    result : result.dataValues
   });
 });
 
@@ -37,7 +37,26 @@ router.get('/deleteAll', async (req, res) => {
 
 router.post('/create', async (req, res) => {
   console.log(req.body);
-  let result = await createUser(req.body);
+  let result;
+  //let result = await createUser(req.body);
+  try {
+    result = await User.create({ 
+      username : null , 
+      phone_number : data.phone_number,
+      sms : null,
+      province : null,
+      city : null,
+      gender : null,
+      verified : false,
+      blue_tick : false,
+      image_url : null,
+    });
+    // newUser.save();
+    // console.log(newUser);
+  } catch (e) {
+    console.log(e);
+  }
+
   res.json({ 
     path : req.originalUrl,
     result : result.dataValues
@@ -46,11 +65,25 @@ router.post('/create', async (req, res) => {
 
 
 
-router.post('/update', async (req, res) => {
+router.post('/update/:user_id', async (req, res) => {
   console.log(req.body);
+
+  let result = [];
+
+  try {
+    result = await User.update(
+      req.body , {
+      where: {
+        id : user_id
+      }
+    });
+  } catch (e) {
+    
+  }
+
   res.json({ 
     path : req.originalUrl,
-    ...req.body 
+    result : result.dataValues
   });
 });
 
