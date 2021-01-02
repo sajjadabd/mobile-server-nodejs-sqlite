@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000
 
 let adminRouter = require('./routes/admin');
 
-let indexRouter = require('./routes/index');
+let authRouter = require('./routes/auth');
 let usersRouter = require('./routes/users');
 let homeRouter  = require('./routes/home');
 let savedRouter = require('./routes/saved');
@@ -30,7 +30,7 @@ testDatabase();
 
 app.use('/admin', adminRouter);
 
-app.use('/'     , indexRouter);
+app.use('/auth' , authRouter);
 app.use('/home' , homeRouter);
 app.use('/users', usersRouter);
 app.use('/saved', savedRouter);

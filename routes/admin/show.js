@@ -30,7 +30,11 @@ router.get('/db/users', async (req, res) => {
   } catch (e) {
     console.log("Error Happens")
   }
-  
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
   return res.render('show', { result : JSON.stringify(result) });
 
   res.json({ 
@@ -50,6 +54,11 @@ router.get('/db/standards', async (req, res) => {
   } catch (e) {
     console.log("Error Happens")
   }
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
   return res.render('standards', { result : JSON.stringify(result) });
 
   res.json({ 
@@ -69,6 +78,11 @@ router.get('/db/seasons', async (req, res) => {
   } catch (e) {
     console.log("Error Happens")
   }
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
   return res.render('seasons', { result : JSON.stringify(result) });
 
   res.json({ 
@@ -87,6 +101,11 @@ router.get('/db/questions', async (req, res) => {
   } catch (e) {
     console.log("Error Happens")
   }
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
   return res.render('questions', { result : JSON.stringify(result) });
 
   res.json({ 
@@ -105,6 +124,11 @@ router.get('/db/skills', async (req, res) => {
   } catch (e) {
     console.log("Error Happens")
   }
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
   return res.render('show', { result : JSON.stringify(result) });
 
   res.json({ 
@@ -123,6 +147,11 @@ router.get('/db/works', async (req, res) => {
   } catch (e) {
     console.log("Error Happens")
   }
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+  
   return res.render('show', { result : JSON.stringify(result) });
 
   res.json({ 

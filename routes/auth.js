@@ -1,7 +1,8 @@
 var express = require('express');
 const axios = require('axios')
-
 var router = express.Router();
+
+const { User , createUser } = require('../models/Users');
 
 const sms = {
   username : 'parsiyan' ,
@@ -59,25 +60,49 @@ const sendSmsFetch = async () => {
 
 
 /* GET home page. */
-router.post('/login', async (req, res) => {
+router.post('/signup', async (req, res) => {
   console.log(req.body);
   const { to } = req.body;
   const text = getRandomInteger(100000,999999);
   console.log(text);
-  // const utf8Decoder = new TextDecoder('utf-8');
-  // const toUTF = utf8Decoder.decode(to)
-  // const textUTF = utf8Decoder.decode(text)
 
-  const url = `http://my.mizbansms.ir/wssms.asmx/sendsms` + 
+  try {
+    let resultFind = await User.findOne({
+      phone_number 
+    })
+
+    console.log(resultFind)
+
+    await User.create({
+      username : null , 
+      phone_number : to,
+      sms : text,
+      province : null,
+      city : null,
+      gender : "male",
+      verified : false,
+      blue_tick : false,
+      image_url : null,
+    })
+
+    const url = `http://my.mizbansms.ir/wssms.asmx/sendsms` + 
     `?username=${sms.username}&password=${sms.password}&to=${to}` + 
     `&text=${text}&from=${sms.from}&api=${sms.api}`
+
+    await sendSmsAxios(url); 
+    // let result = sendSmsFetch(url); 
+    console.log(`send sms to : ${to}`);
+
+  } catch (e) {
+    
+  }
   
-  await sendSmsAxios(url); 
-  // let result = sendSmsFetch(url); 
-  console.log(`send sms to : ${to}`);
+
   res.json({ 
     path : req.originalUrl ,
   });
 });
+
+
 
 module.exports = router;

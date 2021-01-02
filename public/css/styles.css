@@ -79,3 +79,12 @@ div.dragdrop {
 form {
   margin: 1em 0;
 }
+
+
+input[type=text] {
+  font-size : 1em;
+}
+
+button {
+  font-size : 1em;
+}
