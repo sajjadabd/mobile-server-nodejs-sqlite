@@ -150,11 +150,11 @@ router.post('/login', async (req, res) => {
     
     if ( resultFind == undefined ) {
       return res.json({
-        successs : false
+        success : false
       })
     } else {
       return res.json({
-        successs : true
+        success : true
       })
     }
 
