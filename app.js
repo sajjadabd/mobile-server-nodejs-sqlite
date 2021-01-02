@@ -19,11 +19,11 @@ app.use(helmet());
 
 const { sequelize , testConnection } = require('./database');
 
-// const { syncTables } = require('./models/models');
+const { syncTables } = require('./models/models');
 
 let testDatabase = async () => {
   await testConnection();
-  // await syncTables();
+  await syncTables();
 }
 
 testDatabase();

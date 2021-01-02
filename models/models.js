@@ -12,7 +12,7 @@ const { Standards , createStandard } = require('./Standards');
 const { Works , createWork } = require('./Works');
 
 const syncTables = async () => {
-  await sequelize.sync({ force: false });
+  await sequelize.sync({ force: true });
   // Code here
 };
 
