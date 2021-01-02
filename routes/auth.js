@@ -70,7 +70,9 @@ router.post('/signup', async (req, res) => {
 
   try {
     resultFind = await User.findOne({
-      phone_number : to
+      where : {
+        phone_number : to
+      }
     })
 
     console.log(resultFind);
