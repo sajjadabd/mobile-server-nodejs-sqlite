@@ -136,7 +136,7 @@ router.post('/login', async (req, res) => {
   try {
     resultFind = await User.findOne({
       where : {
-        phone_number : to,
+        phone_number : phone,
         sms : sms
       }
     })
