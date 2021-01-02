@@ -67,7 +67,7 @@ router.post('/signup', async (req, res) => {
   console.log(text);
 
   try {
-    /* let resultFind = await User.findOne({
+    let resultFind = await User.findOne({
       phone_number 
     })
 
@@ -84,7 +84,7 @@ router.post('/signup', async (req, res) => {
       blue_tick : false,
       image_url : null,
     })
- */
+
     const url = `http://my.mizbansms.ir/wssms.asmx/sendsms` + 
     `?username=${sms.username}&password=${sms.password}&to=${to}` + 
     `&text=${text}&from=${sms.from}&api=${sms.api}`
