@@ -76,7 +76,7 @@ router.post('/signup', async (req, res) => {
     await User.create({
       username : null , 
       phone_number : to,
-      sms : text,
+      sms : `${text}`,
       province : null,
       city : null,
       gender : "male",
