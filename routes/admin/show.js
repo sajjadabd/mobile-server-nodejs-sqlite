@@ -16,8 +16,14 @@ const { Works , createWork } = require('../../models/Works');
 
 router.get('/', (req, res) => {
   let url = req.originalUrl.replace(/\/+$/g, '');
-  let mainURL = `${req.protocol}://${req.hostname}:${req.socket.localPort}${url}/db/users`
 
+  let mainURL = '';
+
+  if ( req.hostname == 'localhost' )  {
+    mainURL = `${req.protocol}://${req.hostname}:${req.socket.localPort}${url}/show/db/users`
+  } else {
+    mainURL = `${req.protocol}://${req.hostname}${url}/show/db/users`
+  }
   // res.json({ path : mainURL })
   res.redirect( mainURL );
 });
