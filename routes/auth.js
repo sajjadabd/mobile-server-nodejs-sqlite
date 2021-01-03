@@ -96,9 +96,13 @@ router.post('/signup', async (req, res) => {
       })
       console.log('User Created...')
     } else {
-      await User.update({
-        phone_number : to,
-        sms : `${text}`
+      await User.update(
+        {
+          sms : `${text}`
+        }, {
+        where: {
+            phone_number : to ,
+        }
       })
       console.log('User Updated...')
     }
