@@ -94,7 +94,7 @@ router.post('/signup', async (req, res) => {
         blue_tick : false,
         image_url : null,
       })
-    } esle {
+    } else {
       await User.update({
         phone_number : to,
         sms : `${text}`
