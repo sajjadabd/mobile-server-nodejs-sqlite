@@ -94,11 +94,13 @@ router.post('/signup', async (req, res) => {
         blue_tick : false,
         image_url : null,
       })
+      console.log('User Created...')
     } else {
       await User.update({
         phone_number : to,
         sms : `${text}`
       })
+      console.log('User Updated...')
     }
 
   } catch (e) {
