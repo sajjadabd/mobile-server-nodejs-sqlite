@@ -11,22 +11,75 @@ const { Skills , createSkill } = require('./Skills');
 const { Standards , createStandard } = require('./Standards');
 const { Works , createWork } = require('./Works');
 
-const syncTables = async () => {
+
+
+const checkTables = async () => {
+
+  // const check = undefined;
+
+  /* try {
+    check = await User.findAll({
+      where : {
+        id : {
+          [Op.gte]: 1,
+        }
+      }
+    });
+    console.log( '---------------' , check , '----------------');
+  } catch (e) {
+    console.log( '---------------Error Checking User Table----------------');
+  } */
+
+  /* 
+  await User.sync({ force: false })
+  await Chapters.sync({ force: false })
+  await Questions.sync({ force: false })
+  await SavedQuestions.sync({ force: false })
+  await SavedStandards.sync({ force: false })
+  await Seasons.sync({ force: false })
+  await Skills.sync({ force: false })
+  await Standards.sync({ force: false })
+  await User.sync({ force: false })
+  await Works.sync({ force: false }) 
+  */
+  
+
   await sequelize.sync({ force: false });
+  
+  // if( check == undefined ) {
+  //   await sequelize.sync({ force: false });
+  // } else {
+  //   await sequelize.sync({ force: false });
+  // }
+ 
+  
   // Code here
 };
 
-/* const pushSomeFakeInfo = async () => {
-  await createUser();
-  await createChapter();
-  await createQuestion();
-  await createSavedQuestion();
-  await createSavedStandards();
-  await createSeason();
-  await createSkill();
-  await createStandard();
-  await createWork();
-} */
+const pushSomeFakeInfo = async () => {
+  // await createUser({
+  //   username : 'سجاد' , 
+  //   phone_number : '09381308994',
+  //   sms : '586924',
+  //   province : 'مازندران',
+  //   city : 'نکا',
+  //   gender : 'male',
+  //   verified : true,
+  //   blue_tick : false,
+  //   image_url : 'url',
+  // });
+  // await createChapter();
+  // await createQuestion();
+  // await createSavedQuestion();
+  // await createSavedStandards();
+  // await createSeason();
+  // await createSkill();
+  // await createStandard({
+  //   standard_name : 'جوشکاری',
+  //   number_of_seasons : 10
+  // });
+  // await createWork();
+}
 
 module.exports = {
   User , createUser ,
@@ -38,6 +91,6 @@ module.exports = {
   Skills , createSkill ,
   Standards , createStandard ,
   Works , createWork ,
-  syncTables
+  checkTables , pushSomeFakeInfo
 }
 

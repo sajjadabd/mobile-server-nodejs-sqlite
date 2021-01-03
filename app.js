@@ -19,11 +19,12 @@ app.use(helmet());
 
 const { sequelize , testConnection } = require('./database');
 
-const { syncTables } = require('./models/models');
+const { checkTables , pushSomeFakeInfo } = require('./models/models');
 
 let testDatabase = async () => {
   await testConnection();
-  await syncTables();
+  await checkTables();
+  // await pushSomeFakeInfo();
 }
 
 testDatabase();

@@ -3,6 +3,7 @@ var router = express.Router();
 
 
 let showRouter = require('./admin/show');
+let restRouter = require('./admin/rest');
 
 
 router.get('/', (req, res) => {
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/show' , showRouter);
+router.use('/rest' , restRouter);
 
 
 module.exports = router;
