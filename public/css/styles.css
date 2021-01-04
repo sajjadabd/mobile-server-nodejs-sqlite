@@ -66,13 +66,20 @@ th, td {
 }
 
 
-div.dragdrop {
+.dragdrop {
   border : 1px dashed black;
   display : flex;
   justify-content: center;
   align-items: center;
   width : 40vw;
   padding : 2em;
+  margin-bottom: 10px;
+}
+
+
+.green {
+  border : 1px dashed green;
+  background-color: rgba(10, 100,10, 0.5);
 }
 
 
