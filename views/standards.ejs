@@ -30,6 +30,31 @@
         <button>submit standard</button>
       </form>
     </div>
+
+    <div>
+      <form id="edit">
+        <input 
+        type="text" 
+        placeholder="id"
+        name="id" 
+        id="id">
+        
+        <input
+        type="text"
+        placeholder="standard_name"
+        name="standard_name_edit"
+        id="standard_name">
+
+        <input
+        type="text"
+        placeholder="number_of_seasons"
+        name="number_of_seasons"
+        id="number_of_seasons">
+
+        <button>edit standard</button>
+      </form>
+    </div>
+
     <div id="table"></div>
   </main>
 
@@ -41,48 +66,9 @@
   <script>
     makeTable(result);
   </script>
+  <script src="/public/js/standards/handleStandardAddForm.js"></script>
   <script>
-    const baseUrl = 'http://localhost:3000';
-    const herokuUrl = 'https://fanniherfei.herokuapp.com/'
 
-    const url = baseUrl + '/admin/rest/standards/add';
-
-    let addStandard = document.getElementById('add');
-    addStandard.addEventListener('submit' , (e) => {
-      e.preventDefault();
-      new FormData(addStandard);
-    })
-
-    addStandard.addEventListener('formdata' , async (e) => {
-
-      let data = e.formData;
-      // let arr = Array.from(data.values());
-      // console.log(arr);
-      let formValues = {};
-
-      data.forEach((value,key) => {
-        formValues[key] = value;
-        // formValues.push({ [key] : value})
-      });
-
-      console.log(formValues);
-
-      await fetch( url , {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formValues),
-      })
-
-
-      location.reload(); 
-
-      /* for (let value of data.values()) {
-        console.log(value);
-      } */
-
-    });
   </script>
 </body>
 </html>

@@ -6,6 +6,8 @@ var path = require('path');
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 
+const convertLatexToJson = require('./convert');
+
 const { User , createUser } = require('../../models/Users');
 const { Chapters , createChapter  } = require('../../models/Chapters');
 const { Questions , createQuestion } = require('../../models/Questions');
@@ -51,17 +53,12 @@ router.post('/questions/add' , upload.single('questions') , async (req, res) => 
   let pathURL = path.join( req.file.destination , req.file.filename );
   console.log(pathURL);
   
-  await fs.readFile( pathURL , 'utf8' , (err, data) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    console.log(data);
+  let jsonFile = await convertLatexToJson(pathURL);
+  jsonFile = path.join( __dirname  , jsonFile );
 
-    fs.unlink( pathURL , () => {
-      console.log('file deleted');
-    });
-  })
+  // console.log('$$$  ' + newFile + '  $$$');
+  res.type("application/octet-stream");
+  res.attachment(jsonFile);
 
   try {
     // await Questions.create({
