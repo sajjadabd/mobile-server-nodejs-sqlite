@@ -44,10 +44,6 @@ router.get('/db/users', async (req, res) => {
 
   return res.render('show', { result : JSON.stringify(result) });
 
-  res.json({ 
-    path : req.originalUrl,
-    result : result
-  });
 });
 
 
@@ -68,10 +64,6 @@ router.get('/db/standards', async (req, res) => {
 
   return res.render('standards', { result : JSON.stringify(result) });
 
-  res.json({ 
-    path : req.originalUrl,
-    result : result
-  });
 });
 
 
@@ -92,10 +84,6 @@ router.get('/db/seasons', async (req, res) => {
 
   return res.render('seasons', { result : JSON.stringify(result) });
 
-  res.json({ 
-    path : req.originalUrl,
-    result : result
-  });
 });
 
 
@@ -115,10 +103,6 @@ router.get('/db/questions', async (req, res) => {
 
   return res.render('questions', { result : JSON.stringify(result) });
 
-  res.json({ 
-    path : req.originalUrl,
-    result : result
-  });
 });
 
 
@@ -138,10 +122,6 @@ router.get('/db/skills', async (req, res) => {
 
   return res.render('show', { result : JSON.stringify(result) });
 
-  res.json({ 
-    path : req.originalUrl,
-    result : result
-  });
 });
 
 
@@ -161,11 +141,23 @@ router.get('/db/works', async (req, res) => {
   
   return res.render('show', { result : JSON.stringify(result) });
 
-  res.json({ 
-    path : req.originalUrl,
-    result : result
-  });
 });
+
+
+
+
+router.get('/db/latex', async (req, res) => {
+  let result = [];
+  
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
+  return res.render('latex', { result : JSON.stringify(result) });
+
+});
+
 
 
 module.exports = router;

@@ -10,6 +10,7 @@ const buttons = [
   { title : 'Questions' , url : mainHost + 'questions' },
   { title : 'Skills' , url : mainHost + 'skills' },
   { title : 'Works' , url : mainHost + 'works' },
+  { title : 'LatexToJson' , url : mainHost + 'latex' },
 ]
 
 
@@ -60,6 +61,7 @@ const addButtonsToPage = () => {
   let content = buttons.map((item ,index) => {
     return `
     <a 
+    class="routes"
     href="${item.url}"
     data-index="${index}" 
     data-url="${item.url}">

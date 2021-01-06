@@ -9,7 +9,6 @@
   <script>
     let result = '<%- result %>';
     result = JSON.parse(result);
-    // console.log(result);
   </script>
   <style>
   
@@ -24,7 +23,8 @@
     <div id="buttons"></div>
     
     <form id="add">
-      <div name="file" id="file" class="dragdrop">Drag And Drop JSON File Here</div>
+      <div name="file" id="file" class="dragdrop">Drag And Drop Latex File Here</div>
+      <div id="link"></div>
       <button>Submit Latex File</button>
       <button id="reset">Reset</button>
     </form>
@@ -36,10 +36,6 @@
   </footer>
 
   <script src="/public/js/buttons.js"></script>
-  <script>
-    makeTable(result);
-  </script>
-    <script src="/public/js/questions/handleJSONAddForm.js"></script>
-
+  <script src="/public/js/latex/handleLatexAddForm.js"></script>
 </body>
 </html>

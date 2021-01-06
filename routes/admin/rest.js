@@ -28,7 +28,7 @@ router.post('/standards/add', async (req, res) => {
       standard_name ,
       number_of_seasons : 0
     });
-    // console.log(result);
+
     return res.json({
       "success" : true
     })
@@ -39,6 +39,32 @@ router.post('/standards/add', async (req, res) => {
   return res.json({
     "success" : false
   })
+});
+
+
+
+router.post('/latex/add' , upload.single('questions') , async (req, res) => {
+  
+  console.log('-----------------File Recieved---------------------');
+  console.log(req.file);
+
+  console.log('----------------Processing Files-------------------');
+  const file = req.file;
+  let pathURL = path.join( req.file.destination , req.file.filename );
+  console.log(pathURL);
+  
+  let jsonFile = await convertLatexToJson(pathURL);
+
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
+  res.json({
+    "success" : true,
+    "link" : jsonFile
+  })
+
 });
 
 
@@ -51,37 +77,40 @@ router.post('/questions/add' , upload.single('questions') , async (req, res) => 
   console.log('----------------Processing Files-------------------');
   const file = req.file;
   let pathURL = path.join( req.file.destination , req.file.filename );
-  console.log(pathURL);
+
+  let jsonFile = [];
   
-  let jsonFile = await convertLatexToJson(pathURL);
-  jsonFile = path.join( __dirname  , jsonFile );
+  fs.readFile( pathURL , 'utf8' , async (err, data) => {
+    if (err) {
+      console.error(err)
+      return;
+    }
 
-  // console.log('$$$  ' + newFile + '  $$$');
-  res.type("application/octet-stream");
-  res.attachment(jsonFile);
+    try {
+      jsonFile = JSON.parse(data);
 
-  try {
-    // await Questions.create({
-    //   standard_name ,
-    //   number_of_seasons : 0
-    // });
-    // console.log(result);
-    return res.json({
-      "success" : true
-    })
-  } catch (e) {
-    console.log("Error Happens")
-  }
+      res.setHeader(
+        'Content-Security-Policy',
+        "script-src 'unsafe-inline' 'self'"
+      );
+    
+      res.json({
+        "success" : true,
+        "link" : jsonFile
+      })
 
-  return res.json({
-    "success" : false
+    } catch (e) {
+      res.json({
+        "success" : false
+      })
+    }
+    
+
+    
+
   })
+
 });
 
 
-
-
-
-
 module.exports = router;
-

@@ -1,12 +1,15 @@
 let fs = require('fs');
+let path = require('path');
 
 const convertLatexToJson = async (prevPathURL) => {
 
-  const pathURL = prevPathURL + '.json';
+  let pathURL = prevPathURL.replace('uploads', 'public\\tmp') ;
+
+  pathURL += '.json';
+
+  console.log(pathURL);
 
   await fs.readFile( prevPathURL , 'utf8' , async (err, data) => {
-
-    
 
     if (err) {
       console.error(err)
@@ -24,10 +27,7 @@ const convertLatexToJson = async (prevPathURL) => {
 
     data = data.slice(startIndex , endIndex)
 
-    await fs.writeFile( pathURL , '' , 'utf8' , function (err) {
-      if (err) return console.log(err);
-      console.log('clear file...');
-    });
+    fs.writeFileSync( pathURL , '' , 'utf8');
 
     let numberOfSections = data.match(/section/g).length
 
@@ -125,9 +125,7 @@ const convertLatexToJson = async (prevPathURL) => {
     // console.log('this is path : ' + pathURL);
   })
 
-
   return pathURL;
-  
 }
 
 
