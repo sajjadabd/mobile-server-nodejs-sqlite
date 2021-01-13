@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:3000';
 const herokuUrl = 'https://fanniherfei.herokuapp.com/'
 
-const url = baseUrl + '/admin/rest/questions/add';
+const url = herokuUrl + '/admin/rest/questions/add';
 
 let addQuestions = document.getElementById('add');
 let file = document.getElementById('file');

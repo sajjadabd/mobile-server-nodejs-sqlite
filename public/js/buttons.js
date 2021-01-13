@@ -1,7 +1,7 @@
 const herokuHost = 'https://fanniherfei.herokuapp.com/admin/show/db/'
 const localHost = 'http://localhost:3000/admin/show/db/'
 
-const mainHost = localHost;
+const mainHost = herokuHost;
 
 const buttons = [
   { title : 'Users' , url : mainHost + 'users'  },
