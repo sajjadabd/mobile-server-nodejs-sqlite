@@ -63,7 +63,7 @@ const sendSmsFetch = async () => {
 router.post('/signup', async (req, res) => {
   console.log(req.body);
   const { to } = req.body;
-  const text = getRandomInteger(100000,999999);
+  const text = getRandomInteger(1000,9999);
   console.log(text);
 
   let resultFind;
