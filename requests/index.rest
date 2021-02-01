@@ -1,4 +1,4 @@
-POST http://localhost:3000/login 
+POST http://localhost:3000/auth/login 
 Content-Type:  application/json
 
 {
@@ -9,7 +9,18 @@ Content-Type:  application/json
 
 ###
 
-POST http://localhost:3000/login 
+POST http://192.168.161.2:3000/auth/login 
+Content-Type:  application/json
+
+{
+  "phone" : "09381308994",
+  "sms" : "103969"
+}
+
+
+###
+
+POST http://localhost:3000/auth/signup 
 Content-Type:  application/json
 
 {
@@ -18,7 +29,7 @@ Content-Type:  application/json
 
 ###
 
-POST https://fanniherfei.herokuapp.com/login
+POST https://fanniherfei.herokuapp.com/auth/login
 Content-Type: application/json
 
 {

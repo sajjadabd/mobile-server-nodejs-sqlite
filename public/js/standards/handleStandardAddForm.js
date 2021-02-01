@@ -1,7 +1,7 @@
-const baseUrl = 'http://localhost:3000';
+const localhost = 'http://localhost:3000';
 const herokuUrl = 'https://fanniherfei.herokuapp.com/'
 
-const url = herokuUrl + '/admin/rest/standards/add';
+const url = localhost + '/admin/rest/standards/add';
 
 let addStandard = document.getElementById('add');
 addStandard.addEventListener('submit' , (e) => {
