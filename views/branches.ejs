@@ -11,9 +11,7 @@
     result = JSON.parse(result);
     // console.log(result);
   </script>
-  <style>
   
-  </style>
 </head>
 <body>
   <header>
@@ -22,12 +20,36 @@
 
   <main>
     <div id="buttons"></div>
-    
-    <form id="add">
-      <div name="file" id="file" class="dragdrop">Drag And Drop JSON File Here</div>
-      <button>Submit JSON File</button>
-      <button id="reset">Reset</button>
-    </form>
+
+    <div>
+      <form id="add">
+        <input 
+        type="text" 
+        placeholder="branch name"
+        name="branch_name" 
+        id="branch_name">
+        <button>submit branch</button>
+      </form>
+    </div>
+
+    <div>
+      <form id="edit">
+        <input 
+        type="text" 
+        placeholder="id"
+        name="id" 
+        id="id">
+        
+        <input
+        type="text"
+        placeholder="branch_name"
+        name="branch_name_edit"
+        id="branch_name">
+
+        <button>edit branch</button>
+      </form>
+    </div>
+
     <div id="table"></div>
   </main>
 
@@ -39,7 +61,9 @@
   <script>
     makeTable(result);
   </script>
-    <script src="/public/js/questions/handleJSONAddForm.js"></script>
+  <script src="/public/js/standards/handleBranchesAddForm.js"></script>
+  <script>
 
+  </script>
 </body>
 </html>

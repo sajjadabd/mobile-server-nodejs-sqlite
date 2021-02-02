@@ -61,15 +61,15 @@ const sendSmsFetch = async () => {
 
 /* GET home page. */
 router.post('/signup', async (req, res) => {
-  console.log(req.body);
-  const { to } = req.body;
-  const text = getRandomInteger(1000,9999);
-  console.log(text);
+    console.log(req.body);
+    const { to } = req.body;
+    const text = getRandomInteger(1000,9999);
+    console.log(text);
 
-  let resultFind;
+    let resultFind;
 
-  try {
-    resultFind = await User.findOne({
+    try {
+      resultFind = await User.findOne({
       where : {
         phone_number : to
       }
@@ -99,7 +99,8 @@ router.post('/signup', async (req, res) => {
       await User.update(
         {
           sms : `${text}`
-        }, {
+        }, 
+        {
         where: {
             phone_number : to ,
         }
@@ -123,10 +124,10 @@ router.post('/signup', async (req, res) => {
     console.log("Error On Sending Sms")
   }
   
-
   res.json({ 
     path : req.originalUrl ,
   });
+
 });
 
 
@@ -175,12 +176,8 @@ router.post('/login', async (req, res) => {
       success : "false" ,
     });
   }
-  
-  
+    
 });
-
-
-
 
 
 

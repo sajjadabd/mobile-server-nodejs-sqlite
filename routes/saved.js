@@ -28,7 +28,8 @@ router.get('/questions', async (req, res) => {
   res.json({ 
     path : req.originalUrl ,
     result : result.dataValues
-   } );
+  });
+  
 });
 
 

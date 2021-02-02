@@ -35,14 +35,35 @@ router.get('/db/users', async (req, res) => {
     result = await User.findAll();
     // console.log(result);
   } catch (e) {
-    console.log("Error Happens")
+    console.log("Error Happens");
   }
+
   res.setHeader(
     'Content-Security-Policy',
     "script-src 'unsafe-inline' 'self'"
   );
 
   return res.render('show', { result : JSON.stringify(result) });
+
+});
+
+
+
+router.get('/db/branches', async (req, res) => {
+  let result = [];
+  try {
+    result = await Branches.findAll();
+    // console.log(result);
+  } catch (e) {
+    console.log("Error Happens")
+  }
+
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
+  return res.render( 'branches' , { result : JSON.stringify(result) } );
 
 });
 
@@ -107,6 +128,23 @@ router.get('/db/questions', async (req, res) => {
 
 
 
+
+
+router.get('/db/latex', async (req, res) => {
+  let result = [];
+  
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+
+  return res.render('latex', { result : JSON.stringify(result) });
+
+});
+
+
+
+
 router.get('/db/skills', async (req, res) => {
   let result = [];
   try {
@@ -146,17 +184,47 @@ router.get('/db/works', async (req, res) => {
 
 
 
-router.get('/db/latex', async (req, res) => {
+
+router.get( '/db/saved/questions' , async (req, res) => {
   let result = [];
+  try {
+    result = await SavedQuestions.findAll();
+    // console.log(result);
+  } catch (e) {
+    console.log("Error Happens")
+  }
   
   res.setHeader(
     'Content-Security-Policy',
     "script-src 'unsafe-inline' 'self'"
   );
-
-  return res.render('latex', { result : JSON.stringify(result) });
+  
+  return res.render('show', { result : JSON.stringify(result) });
 
 });
+
+
+
+
+
+router.get( '/db/saved/standards' , async (req, res) => {
+  let result = [];
+  try {
+    result = await SavedStandards.findAll();
+    // console.log(result);
+  } catch (e) {
+    console.log("Error Happens")
+  }
+
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'unsafe-inline' 'self'"
+  );
+  
+  return res.render('show', { result : JSON.stringify(result) });
+
+});
+
 
 
 

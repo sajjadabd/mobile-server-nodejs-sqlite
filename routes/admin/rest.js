@@ -16,7 +16,38 @@ const { SavedStandards , createSavedStandards } = require('../../models/SavedSta
 const { Seasons , createSeason } = require('../../models/Seasons');
 const { Skills , createSkill } = require('../../models/Skills');
 const { Standards , createStandard } = require('../../models/Standards');
+const { Branches , createBranch } = require('../../models/Branches');
 const { Works , createWork } = require('../../models/Works');
+
+
+
+
+router.post('/branches/add', async (req, res) => {
+  
+  const { branch_name } = req.body;
+
+  try {
+    await Branches.create({
+      branch_name ,
+    });
+
+    return res.json({
+      "success" : true
+    })
+
+  } catch (e) {
+    console.log("Error Happens")
+  }
+
+  return res.json({
+    "success" : false
+  })
+
+});
+
+
+
+
 
 
 router.post('/standards/add', async (req, res) => {
@@ -39,7 +70,10 @@ router.post('/standards/add', async (req, res) => {
   return res.json({
     "success" : false
   })
+
 });
+
+
 
 
 
@@ -66,6 +100,8 @@ router.post('/latex/add' , upload.single('questions') , async (req, res) => {
   })
 
 });
+
+
 
 
 
@@ -105,12 +141,11 @@ router.post('/questions/add' , upload.single('questions') , async (req, res) => 
       })
     }
     
-
-    
-
   })
 
 });
+
+
 
 
 module.exports = router;

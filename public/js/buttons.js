@@ -5,12 +5,15 @@ const mainHost = localHost;
 
 const buttons = [
   { title : 'Users' , url : mainHost + 'users'  },
+  { title : 'Branches' , url : mainHost + 'branches' },
   { title : 'Standards' , url : mainHost + 'standards' },
   { title : 'Seasons' , url : mainHost + 'seasons' },
   { title : 'Questions' , url : mainHost + 'questions' },
+  { title : 'LatexToJson' , url : mainHost + 'latex' },
   { title : 'Skills' , url : mainHost + 'skills' },
   { title : 'Works' , url : mainHost + 'works' },
-  { title : 'LatexToJson' , url : mainHost + 'latex' },
+  { title : 'Saved Questions' , url : mainHost + 'saved/questions' },
+  { title : 'Saved Standards' , url : mainHost + 'saved/standards' },
 ]
 
 

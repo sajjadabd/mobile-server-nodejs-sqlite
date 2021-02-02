@@ -9,6 +9,7 @@ const { SavedStandards , createSavedStandards } = require('./SavedStandards');
 const { Seasons , createSeason } = require('./Seasons');
 const { Skills , createSkill } = require('./Skills');
 const { Standards , createStandard } = require('./Standards');
+const { Branches , createBranch } = require('./Branches');
 const { Works , createWork } = require('./Works');
 
 
@@ -90,6 +91,7 @@ module.exports = {
   Seasons , createSeason ,
   Skills , createSkill ,
   Standards , createStandard ,
+  Branches , createBranch ,
   Works , createWork ,
   checkTables , pushSomeFakeInfo
 }
