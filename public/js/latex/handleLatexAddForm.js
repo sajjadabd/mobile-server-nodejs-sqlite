@@ -1,7 +1,7 @@
-const baseUrl = 'http://localhost:3000';
+const localhost = 'http://localhost:3000';
 const herokuUrl = 'https://fanniherfei.herokuapp.com/';
 
-const url = herokuUrl + '/admin/rest/latex/add';
+const url = localhost + '/admin/rest/latex/add';
 
 let addQuestions = document.getElementById('add');
 let file = document.getElementById('file');
@@ -59,7 +59,7 @@ addQuestions.addEventListener('submit' , async (e) => {
 
   result = await result.json();
 
-  link.innerHTML = `<a target="_blank" href='${baseUrl + '/' + result.link}' download>download ${result.link}</a>`
+  link.innerHTML = `<a target="_blank" href='${localhost + '/' + result.link}' download>download ${result.link}</a>`
 
 
   console.log(result);

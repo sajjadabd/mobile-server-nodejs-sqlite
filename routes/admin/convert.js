@@ -76,11 +76,11 @@ const convertLatexToJson = async (prevPathURL) => {
           } else {
             console.log(insideLineCounter);
             if( insideLineCounter % 4 == 0) {
-              fs.appendFileSync( pathURL , `\t \"branch\" : \"${theLine}\" , \n` , 'utf8' );
+              fs.appendFileSync( pathURL , `\t \"branch_name\" : \"${theLine}\" , \n` , 'utf8' );
             } else if ( insideLineCounter % 4 == 1) {
               fs.appendFileSync( pathURL , `\t \"standard_name\" : \"${theLine}\" , \n` , 'utf8');
             } else if ( insideLineCounter % 4 == 2) {
-              fs.appendFileSync( pathURL , `\t \"season_counter\" : \"${theLine}\" , \n` , 'utf8');
+              fs.appendFileSync( pathURL , `\t \"season_number\" : \"${theLine}\" , \n` , 'utf8');
             } else if( insideLineCounter % 4 == 3) {
               fs.appendFileSync( pathURL , `\t \"season_title\" : \"${theLine}\" \n` , 'utf8');
             }
