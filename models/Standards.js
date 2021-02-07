@@ -2,6 +2,9 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
 const Standards = sequelize.define("standards", {
+    branch : {
+      type: DataTypes.INTEGER
+    },
     standard_name: {
       type: DataTypes.STRING
     },

@@ -2,8 +2,14 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
 const Seasons = sequelize.define("seasons", {
-    standard_id: {
+    branch : {
       type: DataTypes.INTEGER
+    },
+    standard : {
+      type: DataTypes.INTEGER
+    },
+    season_number : {
+      type: DataTypes.STRING
     },
     season_title : {
       type: DataTypes.STRING
@@ -18,6 +24,7 @@ const createSeason = async (data) => {
   try {
     let result = await Seasons.create({ 
       standard_id : data.standard_id,
+      season_number : data.season_number,
       season_title : data.season_title,
     });
     // newUser.save();

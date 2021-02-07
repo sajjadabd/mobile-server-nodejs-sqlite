@@ -61,6 +61,7 @@ addQuestions.addEventListener('submit' , async (e) => {
 
   result = await result.json();
 
+  location.reload(); 
 
   console.log(result);
 })

@@ -10,6 +10,7 @@ const { SavedQuestions , createSavedQuestion } = require('../../models/SavedQues
 const { SavedStandards , createSavedStandards } = require('../../models/SavedStandards');
 const { Seasons , createSeason } = require('../../models/Seasons');
 const { Skills , createSkill } = require('../../models/Skills');
+const { Branches , createBranch } = require('../../models/Branches');
 const { Standards , createStandard } = require('../../models/Standards');
 const { Works , createWork } = require('../../models/Works');
 

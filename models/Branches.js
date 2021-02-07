@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
 const Branches = sequelize.define("branches", {
-    standard_name: {
+    branch_name: {
       type: DataTypes.STRING
     }
   }, {

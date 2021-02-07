@@ -2,10 +2,10 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
 const Questions = sequelize.define("questions", {
-    chapter: {
+    branch: {
       type: DataTypes.STRING
     },
-    subchapter: {
+    standard: {
       type: DataTypes.STRING
     },
     season: {
@@ -38,8 +38,8 @@ const Questions = sequelize.define("questions", {
 const createQuestion = async (data) => {
   try {
     let result = await Questions.create({ 
-      chapter : data.chapter,
-      subchapter : data.subchapter,
+      branch : data.branch,
+      standard : data.standard,
       season : data.season,
       level : data.level,
       question : data.question,

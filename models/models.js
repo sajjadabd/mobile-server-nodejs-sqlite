@@ -45,16 +45,15 @@ const checkTables = async () => {
   */
   
 
-  await sequelize.sync({ force: false });
+  await sequelize.sync({ force: true });
   
   // if( check == undefined ) {
   //   await sequelize.sync({ force: false });
   // } else {
   //   await sequelize.sync({ force: false });
   // }
- 
-  
   // Code here
+
 };
 
 const pushSomeFakeInfo = async () => {

@@ -125,6 +125,89 @@ router.post('/questions/add' , upload.single('questions') , async (req, res) => 
     try {
       jsonFile = JSON.parse(data);
 
+      const header = jsonFile[0];
+      const content = jsonFile.slice(1,jsonFile.length);
+
+      let resultForBranch = undefined;
+      let resultForStandard = undefined;
+      let resultForSeason = undefined;
+
+      try {
+
+        let testIfBranchIsExists = await Branches.findOne({
+          branch_name : header.branch_name
+        });
+
+        if( testIfBranchIsExists == undefined ) {
+          resultForBranch = await Branches.create({ 
+            branch_name : header.branch_name
+          });
+        } else {
+          resultForBranch = testIfBranchIsExists;
+        }
+        
+
+
+        let testIfStandardIsExists = await Standards.findOne({
+          where : {
+            standard_name : header.standard_name, 
+          }
+        });
+
+
+        console.log(`testIfStandardIsExists :` ,  testIfStandardIsExists);
+
+        if ( testIfStandardIsExists == undefined ) {
+          resultForStandard = await Standards.create({
+            branch : resultForBranch.dataValues.id,
+            standard_name : header.standard_name, 
+            number_of_seasons : 1,
+          });
+        } else {
+          await Standards.increment(
+            'number_of_seasons'
+            , {
+              by : 1 ,
+              where : {
+                id :  testIfStandardIsExists.dataValues.id
+              }
+            }
+          );
+          resultForStandard = testIfStandardIsExists;
+        }
+        
+
+        resultForSeason = await Seasons.create({
+          branch : resultForBranch.dataValues.id,
+          standard : resultForStandard.dataValues.id,
+          season_number : header.season_number.split(' ')[1],
+          season_title : header.season_title,
+        });
+
+        
+
+        content.map( async (item, index) => {
+          await Questions.create({ 
+            branch : resultForBranch.dataValues.id,
+            standard : resultForStandard.dataValues.id,
+            season : resultForSeason.dataValues.season_number,
+            level : item.level,
+            question : item.question,
+            first : item.first,
+            second : item.second,
+            third : item.third,
+            fourth : item.fourth
+          });
+        });
+
+      } catch (e) {
+        console.log(e);
+      }
+
+      
+
+
+
       res.setHeader(
         'Content-Security-Policy',
         "script-src 'unsafe-inline' 'self'"
@@ -132,7 +215,8 @@ router.post('/questions/add' , upload.single('questions') , async (req, res) => 
     
       res.json({
         "success" : true,
-        "link" : jsonFile
+        "header" : jsonFile[0],
+        "content" : jsonFile.slice(1,jsonFile.length)
       })
 
     } catch (e) {
