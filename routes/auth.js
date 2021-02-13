@@ -166,7 +166,8 @@ router.post('/login', async (req, res) => {
       })
     } else {
       return res.json({
-        success : true
+        success : true ,
+        user : resultFind.dataValues
       })
     }
 

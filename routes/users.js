@@ -40,8 +40,8 @@ router.post('/create', async (req, res) => {
   let result;
   //let result = await createUser(req.body);
   try {
-    result = await User.create({ 
-      username : null , 
+    result = await User.create({
+      username : null, 
       phone_number : data.phone_number,
       sms : null,
       province : null,
@@ -65,16 +65,22 @@ router.post('/create', async (req, res) => {
 
 
 
-router.post('/update/:user_id', async (req, res) => {
+router.post('/update' , async (req, res) => {
+
+  console.log('Request To Update User ...');
+
   console.log(req.body);
+
+  const { phone , sms , updatedValues } = req.body; 
 
   let result = [];
 
   try {
     result = await User.update(
-      req.body , {
+      updatedValues , {
       where: {
-        id : user_id
+        phone_number : phone,
+        sms : sms
       }
     });
   } catch (e) {
