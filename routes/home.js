@@ -2,6 +2,9 @@ var express = require('express');
 let fs = require('fs');
 var router = express.Router();
 
+const { Branches , createBranch} = 
+require('../models/Branches');
+
 const { Standards , createStandard } = 
 require('../models/Standards');
 
@@ -15,6 +18,27 @@ require('../models/Seasons');
 router.get('/', async (req, res) => {
   res.json({ path : req.originalUrl });
 });
+
+
+router.get('/branches/getAll' , async (req, res) => {
+  try {
+    let result = await Branches.findAll();
+
+    return res.json({
+      "success" : true,
+      result
+    })
+  } catch (e) {
+    console.log("Error Happens")
+  }
+
+  return res.json({
+    "success" : false
+  })
+});
+
+
+
 
 
 router.get('/standards', async (req, res) => {

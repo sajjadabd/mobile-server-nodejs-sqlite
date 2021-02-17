@@ -45,7 +45,7 @@ const checkTables = async () => {
   */
   
 
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: false });
   
   // if( check == undefined ) {
   //   await sequelize.sync({ force: false });

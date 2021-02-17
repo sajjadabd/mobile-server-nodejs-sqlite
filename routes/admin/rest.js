@@ -22,8 +22,10 @@ const { Works , createWork } = require('../../models/Works');
 
 
 
+
+
+
 router.post('/branches/add', async (req, res) => {
-  
   const { branch_name } = req.body;
 
   try {
@@ -34,7 +36,6 @@ router.post('/branches/add', async (req, res) => {
     return res.json({
       "success" : true
     })
-
   } catch (e) {
     console.log("Error Happens")
   }
@@ -51,7 +52,6 @@ router.post('/branches/add', async (req, res) => {
 
 
 router.post('/standards/add', async (req, res) => {
-  
   const { standard_name } = req.body;
 
   try {
@@ -134,12 +134,18 @@ router.post('/questions/add' , upload.single('questions') , async (req, res) => 
 
       try {
 
+        
+
         let testIfBranchIsExists = await Branches.findOne({
-          branch_name : header.branch_name
+          where : {
+            branch_name : header.branch_name
+          }
         });
 
-        if( testIfBranchIsExists == undefined ) {
-          resultForBranch = await Branches.create({ 
+        console.log('testIfBranchIsExists :' , testIfBranchIsExists);
+
+        if( testIfBranchIsExists == null ) {
+          resultForBranch = await Branches.create({
             branch_name : header.branch_name
           });
         } else {

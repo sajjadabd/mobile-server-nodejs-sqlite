@@ -5,6 +5,7 @@ const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: 'database.sqlite',
   // logging: (...msg) => console.log(msg),
+  logging : false
 });
 
 const testConnection = async () => {

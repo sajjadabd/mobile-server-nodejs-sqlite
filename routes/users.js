@@ -68,7 +68,6 @@ router.post('/create', async (req, res) => {
 router.post('/update' , async (req, res) => {
 
   console.log('Request To Update User ...');
-
   console.log(req.body);
 
   const { phone , sms , updatedValues } = req.body; 
