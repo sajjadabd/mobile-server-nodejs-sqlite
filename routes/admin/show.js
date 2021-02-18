@@ -200,7 +200,7 @@ router.get( '/db/saved/questions' , async (req, res) => {
     "script-src 'unsafe-inline' 'self'"
   );
   
-  return res.render('show', { result : JSON.stringify(result) });
+  return res.render('savedQuestions', { result : JSON.stringify(result) });
 
 });
 
@@ -222,8 +222,7 @@ router.get( '/db/saved/standards' , async (req, res) => {
     "script-src 'unsafe-inline' 'self'"
   );
   
-  return res.render('show', { result : JSON.stringify(result) });
-
+  return res.render('savedStandards', { result : JSON.stringify(result) });
 });
 
 

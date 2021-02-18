@@ -238,4 +238,47 @@ router.post('/questions/add' , upload.single('questions') , async (req, res) => 
 
 
 
+
+router.post('/saved/standards/truncate', async (req, res) => {
+  try {
+    await SavedStandards.destroy({
+      truncate: true
+    });
+
+    return res.json({
+      "success" : true
+    })
+  } catch (e) {
+    console.log("Error Happens")
+  }
+
+  return res.json({
+    "success" : false
+  })
+
+});
+
+
+
+router.post('/saved/questions/truncate', async (req, res) => {
+  try {
+    await SavedQuestions.destroy({
+      truncate: true
+    });
+
+    return res.json({
+      "success" : true
+    })
+  } catch (e) {
+    console.log("Error Happens")
+  }
+
+  return res.json({
+    "success" : false
+  })
+
+});
+
+
+
 module.exports = router;

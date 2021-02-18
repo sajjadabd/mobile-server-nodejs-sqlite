@@ -2,12 +2,15 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
 const SavedStandards = sequelize.define("savedstandards", {
+    branch_id : {
+      type: DataTypes.INTEGER
+    },
     standard_id : {
       type: DataTypes.INTEGER
     },
     user_id : {
       type: DataTypes.INTEGER
-    },
+    }
   }, {
     timestamps: false
   }

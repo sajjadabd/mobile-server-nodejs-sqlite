@@ -38,6 +38,29 @@ router.get('/branches/getAll' , async (req, res) => {
 });
 
 
+router.get('/standards/:branch_id', async (req, res) => {
+  const { branch_id } = req.params;
+
+  let result = [];
+  try {
+    result = await Standards.findAll({
+      where : {
+        branch : branch_id
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+
+  console.log(branch_id);
+  console.log(result)
+
+  return res.json({ 
+    path : req.originalUrl,
+    result : result
+  });
+});
+
 
 
 
@@ -45,11 +68,11 @@ router.get('/standards', async (req, res) => {
   let result = [];
   try {
     result = await Standards.findAll();
-    return result;
   } catch (e) {
     console.log(e);
   }
-  res.json({ 
+
+  return res.json({ 
     path : req.originalUrl,
     result : result.dataValues
   } );
@@ -57,26 +80,27 @@ router.get('/standards', async (req, res) => {
 
 
 
-router.get('/seasons/:standard_id', async (req, res) => {
-  const { standard_id } = req.params;
+router.get('/seasons/:branch_id/:standard_id', async (req, res) => {
+  const { branch_id , standard_id } = req.params;
 
   let result = [];
 
   try {
     result = await Seasons.findAll({
       where : {
-        standard_id 
+        branch : branch_id ,
+        standard : standard_id 
       }
     });
-    return result;
   } catch (e) {
     console.log(e);
   }
 
-  res.json({ 
+  return res.json({ 
     path : req.originalUrl ,
-    standard_id,
-    result : result.dataValues
+    branch : branch_id,
+    standard : standard_id,
+    result : result
   });
 });
 
@@ -118,12 +142,11 @@ router.get('/questions/:standard_id', async (req, res) => {
         standard_id 
       }
     });
-    return result;
   } catch (e) {
     console.log(e);
   }
 
-  res.json({ 
+  return res.json({ 
     path : req.originalUrl ,
     standard_id ,
     result : result.dataValues,
@@ -145,18 +168,24 @@ router.get('/questions/:standard_id/:season_id', async (req, res) => {
         season_id
       }
     });
-    return result;
   } catch (e) {
     console.log(e);
   }
 
-  res.json({ 
+  return res.json({ 
     path : req.originalUrl ,
     standard_id ,
     season_id ,
     result : result.dataValues
    });
 });
+
+
+
+
+
+
+
 
 
 
