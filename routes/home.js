@@ -1,4 +1,6 @@
 var express = require('express');
+const { Op } = require("sequelize");
+
 let fs = require('fs');
 var router = express.Router();
 
@@ -156,16 +158,22 @@ router.get('/questions/:standard_id', async (req, res) => {
 
 
 
-router.get('/questions/:standard_id/:season_id', async (req, res) => {
-  const { standard_id , season_id } = req.params;
+router.get('/questions/:branch_id/:standard_id/:season_id' , async (req, res) => {
+  
+  const { 
+    branch_id , 
+    standard_id , 
+    season_id 
+  } = req.params;
 
   let result = [];
 
   try {
     result = await Questions.findAll({
       where : {
-        standard_id ,
-        season_id
+        branch : branch_id ,
+        standard : standard_id ,
+        season : season_id
       }
     });
   } catch (e) {
@@ -174,12 +182,93 @@ router.get('/questions/:standard_id/:season_id', async (req, res) => {
 
   return res.json({ 
     path : req.originalUrl ,
+    branch_id ,
     standard_id ,
     season_id ,
-    result : result.dataValues
+    result : result
    });
 });
 
+
+
+router.get('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
+  const { 
+    branch_id , 
+    standard_id , 
+  } = req.params;
+
+  let result = [];
+
+  try {
+    result = await Questions.findAll({
+      where : {
+        branch : branch_id ,
+        standard : standard_id 
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+
+  return res.json({ 
+    path : req.originalUrl ,
+    branch_id ,
+    standard_id ,
+    result : result
+   });
+});
+
+
+
+
+
+
+router.post('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
+  const { 
+    branch_id , 
+    standard_id , 
+  } = req.params;
+
+  console.log(req.body);
+
+  const { seasons } = req.body;
+
+  let selectedSeasons = seasons.map( (item,index) => {
+    if( item == true ) {
+      return index+1;
+    } 
+  });
+
+  selectedSeasons = selectedSeasons.filter( (item, index) => {
+    return item != undefined
+  } );
+
+  console.log(selectedSeasons);
+
+
+  let result = [];
+
+  try {
+    result = await Questions.findAll({
+      where : {
+        branch : branch_id ,
+        standard : standard_id ,
+        season : {
+          [Op.in] : selectedSeasons
+        }
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+
+  return res.json({ 
+    path : req.originalUrl ,
+    branch_id ,
+    standard_id ,
+    result : result
+   });
+});
 
 
 
