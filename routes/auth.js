@@ -9,7 +9,9 @@ const sms = {
   password : 'parsiyan' ,
   // to : '09381308994' ,
   // text : 'Hey There' ,
-  from : '50002120222220' ,
+  // from : '50002120222220' ,
+  // from : '50004688' ,
+  from : '5000246207',
   api : '41'
 }
 

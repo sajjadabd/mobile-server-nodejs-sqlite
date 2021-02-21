@@ -8,6 +8,9 @@ const SavedQuestions = sequelize.define("savedquestions", {
     user_id : {
       type: DataTypes.INTEGER
     },
+    saved : {
+      type: DataTypes.BOOLEAN
+    }
   }, {
     timestamps: false
   }

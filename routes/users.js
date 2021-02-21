@@ -10,6 +10,24 @@ router.get('/', async (req, res) => {
 });
 
 
+
+router.get('/getUser/:user_id', async (req, res) => {
+  console.log(req.body);
+  const { user_id } = req.params
+
+  let result = await User.findOne({ 
+    id : user_id
+  });
+  
+  return res.json({ 
+    path : req.originalUrl,
+    result : result
+  });
+});
+
+
+
+
 router.post('/check', async (req, res) => {
   console.log(req.body);
   let result = await User.findOne({ 

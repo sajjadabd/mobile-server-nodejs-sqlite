@@ -96,7 +96,8 @@ router.get('/add/standards/:branch_id/:standard_id/:user_id', async (req, res) =
     result = await SavedStandards.create({
       branch_id : branch_id ,
       standard_id : standard_id , 
-      user_id : user_id
+      user_id : user_id , 
+      saved : true,
     });
   } catch (e) {
     console.log(e);
@@ -115,9 +116,11 @@ router.get('/add/standards/:branch_id/:standard_id/:user_id', async (req, res) =
 router.get('/remove/standards/:branch_id/:standard_id/:user_id', async (req, res) => {
   const { branch_id , standard_id , user_id } = req.params;
 
+  console.log(req.params);
+
   let result = [];
   try {
-    result = await User.destroy({
+    result = await SavedStandards.destroy({
       where: {
         branch_id : branch_id ,
         standard_id : standard_id , 
@@ -147,9 +150,10 @@ router.get('/add/questions/:question_id/:user_id', async (req, res) => {
 
   let result = [];
   try {
-    result = await SavedStandards.create({
+    result = await SavedQuestions.create({
       question_id : question_id ,
-      user_id : user_id
+      user_id : user_id ,
+      saved : true ,
     });
   } catch (e) {
     console.log(e);
@@ -172,7 +176,7 @@ router.get('/remove/questions/:question_id/:user_id', async (req, res) => {
 
   let result = [];
   try {
-    result = await User.destroy({
+    result = await SavedQuestions.destroy({
       where: {
         question_id : question_id ,
         user_id : user_id

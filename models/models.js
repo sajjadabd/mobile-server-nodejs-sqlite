@@ -46,6 +46,9 @@ const checkTables = async () => {
   
 
   await sequelize.sync({ force: false });
+
+  await SavedQuestions.sync({ force: true })
+  await SavedStandards.sync({ force: true })
   
   // if( check == undefined ) {
   //   await sequelize.sync({ force: false });

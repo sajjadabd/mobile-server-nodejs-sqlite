@@ -2,6 +2,11 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
 const SavedStandards = sequelize.define("savedstandards", {
+    save_standard_id : {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true 
+    } ,
     branch_id : {
       type: DataTypes.INTEGER
     },
@@ -10,6 +15,9 @@ const SavedStandards = sequelize.define("savedstandards", {
     },
     user_id : {
       type: DataTypes.INTEGER
+    },
+    saved : {
+      type: DataTypes.BOOLEAN
     }
   }, {
     timestamps: false

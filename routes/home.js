@@ -1,5 +1,7 @@
 var express = require('express');
 const { Op } = require("sequelize");
+const { sequelize } = require('../database');
+const { QueryTypes } = require('sequelize');
 
 let fs = require('fs');
 var router = express.Router();
@@ -40,16 +42,26 @@ router.get('/branches/getAll' , async (req, res) => {
 });
 
 
-router.get('/standards/:branch_id', async (req, res) => {
-  const { branch_id } = req.params;
+router.get('/standards/:branch_id/:user_id', async (req, res) => {
+  const { branch_id , user_id } = req.params;
 
   let result = [];
   try {
-    result = await Standards.findAll({
+    /* result = await Standards.findAll({
       where : {
         branch : branch_id
       }
-    });
+    }); */
+    result = await sequelize.query(
+      `SELECT * FROM standards
+      LEFT JOIN savedstandards
+      ON standards.id = savedstandards.standard_id
+      WHERE standards.branch = :branch_id` , 
+      { 
+        replacements: { branch_id : branch_id } ,
+        type: QueryTypes.SELECT 
+      }
+    );
   } catch (e) {
     console.log(e);
   }
