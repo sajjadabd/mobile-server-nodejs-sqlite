@@ -22,11 +22,21 @@ router.get('/questions/:user_id', async (req, res) => {
   let result = [];
 
   try {
-    result = await SavedQuestions.findAll({
+    /* result = await SavedQuestions.findAll({
       where : {
         user_id 
       }
-    });
+    }); */
+    result = await sequelize.query(
+      `SELECT * FROM savedquestions
+      LEFT JOIN questions
+      ON savedquestions.question_id = questions.id
+      WHERE savedquestions.user_id = :user_id` , 
+      { 
+        replacements: { user_id : user_id } ,
+        type: QueryTypes.SELECT 
+      }
+    );
   } catch (e) {
     console.log(e);
   }

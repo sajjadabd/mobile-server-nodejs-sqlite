@@ -26,7 +26,7 @@ truncateStandard.addEventListener('formdata' , async (e) => {
 
 
   await fetch( url , {
-    method: 'GET', // or 'PUT'
+    method: 'POST', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',
     },

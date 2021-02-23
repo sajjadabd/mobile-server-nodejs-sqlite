@@ -54,11 +54,16 @@ router.get('/standards/:branch_id/:user_id', async (req, res) => {
     }); */
     result = await sequelize.query(
       `SELECT * FROM standards
-      LEFT JOIN savedstandards
-      ON standards.id = savedstandards.standard_id
-      WHERE standards.branch = :branch_id` , 
+      LEFT JOIN ( SELECT * FROM savedstandards
+        WHERE savedstandards.user_id = :user_id ) AS mySaved
+      ON standards.id = mySaved.standard_id
+      WHERE standards.branch = :branch_id
+      ` , 
       { 
-        replacements: { branch_id : branch_id } ,
+        replacements: { 
+          branch_id : branch_id ,
+          user_id : user_id 
+        } ,
         type: QueryTypes.SELECT 
       }
     );
@@ -170,24 +175,47 @@ router.get('/questions/:standard_id', async (req, res) => {
 
 
 
-router.get('/questions/:branch_id/:standard_id/:season_id' , async (req, res) => {
+router.get('/questions/:branch_id/:standard_id/:season_id/:user_id' , async (req, res) => {
   
+  console.log('request to fetch questions ...');
+
   const { 
     branch_id , 
     standard_id , 
-    season_id 
+    season_id ,
+    user_id ,
   } = req.params;
+
+  console.log(req.params);
 
   let result = [];
 
   try {
-    result = await Questions.findAll({
+    /* result = await Questions.findAll({
       where : {
         branch : branch_id ,
         standard : standard_id ,
         season : season_id
       }
-    });
+    }); */
+    result = await sequelize.query(
+      `SELECT *  FROM questions
+      LEFT JOIN ( SELECT * FROM savedquestions 
+      WHERE savedquestions.user_id = :user_id ) AS mySaved
+      ON questions.id = mySaved.question_id
+      WHERE questions.branch = :branch_id
+      AND questions.standard = :standard_id
+      AND questions.season = :season_id` ,
+      { 
+        replacements: { 
+          branch_id : branch_id ,
+          standard_id : standard_id ,
+          season_id : season_id ,
+          user_id : user_id 
+        } ,
+        type: QueryTypes.SELECT 
+      }
+    );
   } catch (e) {
     console.log(e);
   }

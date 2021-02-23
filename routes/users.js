@@ -12,11 +12,15 @@ router.get('/', async (req, res) => {
 
 
 router.get('/getUser/:user_id', async (req, res) => {
-  console.log(req.body);
+  
   const { user_id } = req.params
 
+  console.log(req.params)
+
   let result = await User.findOne({ 
-    id : user_id
+    where : {
+      id : user_id
+    }
   });
   
   return res.json({ 

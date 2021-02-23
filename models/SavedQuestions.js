@@ -2,6 +2,11 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database');
 
 const SavedQuestions = sequelize.define("savedquestions", {
+    save_question_id : {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true 
+    } ,
     question_id : {
       type: DataTypes.INTEGER
     },
