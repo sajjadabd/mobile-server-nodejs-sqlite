@@ -1,5 +1,5 @@
 const localhost = 'http://localhost:3000';
-const herokuUrl = 'https://fanniherfei.herokuapp.com/'
+const herokuUrl = 'https://fanniherfei.herokuapp.com'
 
 const url = localhost + '/admin/rest/branches/add';
 

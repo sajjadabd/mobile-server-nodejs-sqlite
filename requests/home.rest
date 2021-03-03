@@ -41,3 +41,9 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:3000/home/search/branches HTTP/1.1
+content-type: application/json
+
+{
+    "search" : "فن"
+}

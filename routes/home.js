@@ -183,7 +183,7 @@ router.get('/questions/:branch_id/:standard_id/:season_id/:user_id' , async (req
     branch_id , 
     standard_id , 
     season_id ,
-    user_id ,
+    user_id 
   } = req.params;
 
   console.log(req.params);
@@ -231,11 +231,15 @@ router.get('/questions/:branch_id/:standard_id/:season_id/:user_id' , async (req
 
 
 
-router.get('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
+router.post('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
   const { 
     branch_id , 
     standard_id , 
   } = req.params;
+
+  console.log(req.body);
+
+  const { level } = req.body;
 
   let result = [];
 
@@ -243,7 +247,8 @@ router.get('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
     result = await Questions.findAll({
       where : {
         branch : branch_id ,
-        standard : standard_id 
+        standard : standard_id ,
+        level : level
       }
     });
   } catch (e) {
@@ -263,7 +268,7 @@ router.get('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
 
 
 
-router.post('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
+router.post('/exam/seasons/questions/:branch_id/:standard_id' , async (req, res) => {
   const { 
     branch_id , 
     standard_id , 
@@ -271,12 +276,12 @@ router.post('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
 
   console.log(req.body);
 
-  const { seasons } = req.body;
+  const { seasons , level } = req.body;
 
   let selectedSeasons = seasons.map( (item,index) => {
     if( item == true ) {
       return index+1;
-    } 
+    }
   });
 
   selectedSeasons = selectedSeasons.filter( (item, index) => {
@@ -295,7 +300,8 @@ router.post('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
         standard : standard_id ,
         season : {
           [Op.in] : selectedSeasons
-        }
+        }, 
+        level : level
       }
     });
   } catch (e) {
@@ -310,6 +316,64 @@ router.post('/exam/questions/:branch_id/:standard_id' , async (req, res) => {
    });
 });
 
+
+
+
+
+
+router.post('/search/branches', async (req, res) => {
+  const { search } = req.body;
+
+  console.log(req.body);
+
+  let result = [];
+
+
+  try {
+    result = await Branches.findAll({
+      where : {
+        branch_name : {
+          [Op.like]: `%${search}%`,
+        }
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+
+  return res.json({ 
+    path : req.originalUrl,
+    result : result
+  } );
+});
+
+
+
+
+router.post('/search/standards', async (req, res) => {
+  const { search } = req.body;
+
+  console.log(req.body);
+
+  let result = [];
+
+  try {
+    result = await Standards.findAll({
+      where : {
+        standard_name : {
+          [Op.like]: `%${search}%`,
+        }
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+
+  return res.json({ 
+    path : req.originalUrl,
+    result : result
+  } );
+});
 
 
 
